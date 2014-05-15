@@ -1,0 +1,9 @@
+{
+  "name": "purescript-algebra",
+  "version": "0.0.0",
+  "devDependencies": {
+    "gulp-purescript": "~0.0.x",
+    "gulp": "~3.6.0",
+    "gulp-clean": "^0.2.4"
+  }
+}
