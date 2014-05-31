@@ -11,13 +11,13 @@ module Test.Data.Monoid where
     quickCheck (prop_left_identity  (<>) mempty m)
     quickCheck (prop_right_identity (<>) mempty m)
 
-  prop_AdditiveMonoid :: forall m. (Arbitrary m, P.Eq m, AdditiveSemigroup m, AdditiveMonoid m) => m -> QC {}
-  prop_AdditiveMonoid m = do
+  prop_AddMonoid :: forall m. (Arbitrary m, P.Eq m, AddSemigroup m, AddMonoid m) => m -> QC {}
+  prop_AddMonoid m = do
     quickCheck (prop_left_identity  (+) zero m)
     quickCheck (prop_right_identity (+) zero m)
 
-  prop_MultiplicativeMonoid :: forall m. (Arbitrary m, P.Eq m, MultiplicativeSemigroup m, MultiplicativeMonoid m) => m -> QC {}
-  prop_MultiplicativeMonoid m = do
+  prop_MultMonoid :: forall m. (Arbitrary m, P.Eq m, MultSemigroup m, MultMonoid m) => m -> QC {}
+  prop_MultMonoid m = do
     quickCheck (prop_left_identity  (*) one m)
     quickCheck (prop_right_identity (*) one m)
 

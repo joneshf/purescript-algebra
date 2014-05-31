@@ -13,7 +13,7 @@ module Data.Group where
   --   a + (negate a) == zero == (negate a) + a
   --   This can also be rewritten
   --   a - a == zero == a - a
-  class (AdditiveMonoid g) <= AdditiveGroup g where
+  class (AddMonoid g) <= AddGroup g where
     negate :: g -> g
     (-) :: g -> g -> g
 
@@ -21,7 +21,7 @@ module Data.Group where
   --   a * (recip a) == one == (recip a) * a
   --   This can also be rewritten
   --   a / a == one == a / a
-  class (MultiplicativeMonoid g) <= MultiplicativeGroup g where
+  class (MultMonoid g) <= MultGroup g where
     recip :: g -> g
     (/) :: g -> g -> g
 
@@ -29,21 +29,21 @@ module Data.Group where
   class (AbelianMonoid g, Group g) <= AbelianGroup g
 
   -- | The Group should preserve commutativity.
-  class (AbelianAdditiveMonoid g, AdditiveGroup g) <= AbelianAdditiveGroup g
+  class (AbelianAddMonoid g, AddGroup g) <= AbelianAddGroup g
 
   -- | The Group should preserve commutativity.
-  class (AbelianMultiplicativeMonoid g, MultiplicativeGroup g) <= AbelianMultiplicativeGroup g
+  class (AbelianMultMonoid g, MultGroup g) <= AbelianMultGroup g
 
-  instance additiveNumber :: AdditiveGroup Number where
+  instance additiveNumber :: AddGroup Number where
     negate x = zero - x
     (-) = numMinus
 
-  instance multiplicativeNumber :: MultiplicativeGroup Number where
-    recip x = 1 / x
+  instance multiplicativeNumber :: MultGroup Number where
+    recip x = one / x
     (/) = numDivide
 
-  instance abelianAdditiveGroup :: AbelianAdditiveGroup Number
-  instance abelianMultiplicativeGroup :: AbelianMultiplicativeGroup Number
+  instance abelianAddGroup :: AbelianAddGroup Number
+  instance abelianMultGroup :: AbelianMultGroup Number
 
   foreign import numMinus
     "function numMinus(n) {\

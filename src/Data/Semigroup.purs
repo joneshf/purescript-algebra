@@ -13,12 +13,12 @@ module Data.Semigroup where
 
   -- | `+` should satisfy associativity.
   --   a + (b + c) == (a + b) + c
-  class AdditiveSemigroup s where
+  class AddSemigroup s where
     (+) :: s -> s -> s
 
   -- | `*` should satisfy associativity.
   --   a * (b * c) == (a * b) * c
-  class (AdditiveSemigroup s) <= MultiplicativeSemigroup s where
+  class (AddSemigroup s) <= MultSemigroup s where
     (*) :: s -> s -> s
 
   -- | `<>` should satisfy commutativity.
@@ -27,20 +27,20 @@ module Data.Semigroup where
 
   -- | `+` should satisfy commutativity.
   --   a + b == b + a
-  class (AdditiveSemigroup s) <= AbelianAdditiveSemigroup s
+  class (AddSemigroup s) <= AbelianAddSemigroup s
 
   -- | `*` should satisfy commutativity.
   --   a * b == b * a
-  class (MultiplicativeSemigroup s) <= AbelianMultiplicativeSemigroup s
+  class (MultSemigroup s) <= AbelianMultSemigroup s
 
-  instance additiveNumber :: AdditiveSemigroup Number where
+  instance additiveNumber :: AddSemigroup Number where
     (+) = numPlus
 
-  instance multiplicativeNumber :: MultiplicativeSemigroup Number where
+  instance multiplicativeNumber :: MultSemigroup Number where
     (*) = numTimes
 
-  instance abelianAdditiveSemigroup :: AbelianAdditiveSemigroup Number
-  instance abelianMultiplicativeSemigroup :: AbelianMultiplicativeSemigroup Number
+  instance abelianAddSemigroup :: AbelianAddSemigroup Number
+  instance abelianMultSemigroup :: AbelianMultSemigroup Number
 
   instance semigroupString :: Semigroup String where
     (<>) = strConcat

@@ -11,5 +11,5 @@ module Data.Module.RightModule where
   --   m >* (r + s) == (m >* r) + (m >* s)
   --   m >* (r * s) == (m >* r) * s
   --   m >* one == m
-  class (AbelianAdditiveGroup m, Ring r) <= RightModule m r where
+  class (AbelianAddGroup m, Ring r) <= RightModule m r where
     (>*) :: m -> r -> m

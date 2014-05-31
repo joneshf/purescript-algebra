@@ -12,5 +12,5 @@ module Data.Module.LeftModule where
   --   (r + s) *< m == (r *< m) + (s *< m)
   --   (r * s) *< m == r * (s *< m)
   --   one *< m == m
-  class (AbelianAdditiveGroup m, Ring r) <= LeftModule m r where
+  class (AbelianAddGroup m, Ring r) <= LeftModule m r where
     (*<) :: r -> m -> m

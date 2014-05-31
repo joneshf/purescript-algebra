@@ -22,6 +22,6 @@ module Data.Semilattice where
   foreign import booleanAnd
     "function booleanAnd(b1) {\
     \  return function(b2) {\
-    \    return b1 || b2;\
+    \    return b1 && b2;\
     \  };\
     \}" :: Boolean -> Boolean -> Boolean

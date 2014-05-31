@@ -9,16 +9,16 @@ module Data.Ring where
   -- | `*` should distribute over `+`.
   --   a * (b + c) == (a * b) + (a * c)
   --   (b + c) * a == (b * a) + (c * a)
-  class (AbelianAdditiveGroup r, MultiplicativeSemigroup r) <= Rng r
+  class (AbelianAddGroup r, MultSemigroup r) <= Rng r
 
   -- | `*` should distribute over `+`.
   --   a * (b + c) == (a * b) + (a * c)
   --   (b + c) * a == (b * a) + (c * a)
-  class (AbelianAdditiveMonoid r, MultiplicativeMonoid r) <= Rig r
+  class (AbelianAddMonoid r, MultMonoid r) <= Rig r
 
   -- | `*` should distribute over `+`.
   --   a * (b + c) == (a * b) + (a * c)
   --   (b + c) * a == (b * a) + (c * a)
-  class (AbelianAdditiveGroup r, MultiplicativeMonoid r) <= Ring r
+  class (AbelianAddGroup r, MultMonoid r) <= Ring r
 
   instance ringNumber :: Ring Number
