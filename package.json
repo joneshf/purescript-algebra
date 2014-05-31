@@ -1,6 +1,6 @@
 {
   "name": "purescript-algebra",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "devDependencies": {
     "gulp-purescript": "~0.0.x",
     "gulp": "~3.6.0",
