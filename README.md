@@ -10,12 +10,12 @@
 
 ### Type Class Instances
 
-    instance booleanBoolean :: BooleanAlgebra Prim.Boolean
+    instance booleanBoolean :: BooleanAlgebra Boolean
 
 
 ### Values
 
-    booleanNegate :: Prim.Boolean -> Prim.Boolean
+    booleanNegate :: Boolean -> Boolean
 
     not :: forall b. (BooleanAlgebra b) => b -> b
 
@@ -33,49 +33,49 @@
 
 ### Type Class Instances
 
-    instance lowerSemilatticeBoolean :: LowerSemilattice Prim.Boolean
+    instance lowerSemilatticeBoolean :: LowerSemilattice Boolean
 
-    instance upperSemilatticeBoolean :: UpperSemilattice Prim.Boolean
+    instance upperSemilatticeBoolean :: UpperSemilattice Boolean
 
 
 ## Module Data.Group
 
 ### Type Classes
 
-    class (AbelianAdditiveMonoid g, AdditiveGroup g) <= AbelianAdditiveGroup g where
+    class (AbelianAddMonoid g, AddGroup g) <= AbelianAddGroup g where
 
     class (AbelianMonoid g, Group g) <= AbelianGroup g where
 
-    class (AbelianMultiplicativeMonoid g, MultiplicativeGroup g) <= AbelianMultiplicativeGroup g where
+    class (AbelianMultMonoid g, MultGroup g) <= AbelianMultGroup g where
 
-    class (AdditiveMonoid g) <= AdditiveGroup g where
+    class (AddMonoid g) <= AddGroup g where
       negate :: g -> g
       (-) :: g -> g -> g
 
     class (Monoid g) <= Group g where
       inverse :: g -> g
 
-    class (MultiplicativeMonoid g) <= MultiplicativeGroup g where
+    class (MultMonoid g) <= MultGroup g where
       recip :: g -> g
       (/) :: g -> g -> g
 
 
 ### Type Class Instances
 
-    instance abelianAdditiveGroup :: AbelianAdditiveGroup Prim.Number
+    instance abelianAddGroup :: AbelianAddGroup Number
 
-    instance abelianMultiplicativeGroup :: AbelianMultiplicativeGroup Prim.Number
+    instance abelianMultGroup :: AbelianMultGroup Number
 
-    instance additiveNumber :: AdditiveGroup Prim.Number
+    instance additiveNumber :: AddGroup Number
 
-    instance multiplicativeNumber :: MultiplicativeGroup Prim.Number
+    instance multiplicativeNumber :: MultGroup Number
 
 
 ### Values
 
-    numDivide :: Prim.Number -> Prim.Number -> Prim.Number
+    numDivide :: Number -> Number -> Number
 
-    numMinus :: Prim.Number -> Prim.Number -> Prim.Number
+    numMinus :: Number -> Number -> Number
 
 
 ## Module Data.Lattice
@@ -87,15 +87,7 @@
 
 ### Type Class Instances
 
-    instance latticeBoolean :: Lattice Prim.Boolean
-
-
-## Module Data.Module.LeftModule
-
-### Type Classes
-
-    class (AbelianAdditiveGroup m, Ring r) <= LeftModule m r where
-      (*<) :: r -> m -> m
+    instance latticeBoolean :: Lattice Boolean
 
 
 ## Module Data.Module
@@ -105,77 +97,69 @@
     class (LeftModule m r, RightModule m r) <= Module m r where
 
 
-## Module Data.Module.RightModule
-
-### Type Classes
-
-    class (AbelianAdditiveGroup m, Ring r) <= RightModule m r where
-      (>*) :: m -> r -> m
-
-
 ## Module Data.Monoid
 
 ### Type Classes
 
-    class (AbelianAdditiveSemigroup m, AdditiveMonoid m) <= AbelianAdditiveMonoid m where
+    class (AbelianAddSemigroup m, AddMonoid m) <= AbelianAddMonoid m where
 
     class (AbelianSemigroup m, Monoid m) <= AbelianMonoid m where
 
-    class (AbelianMultiplicativeSemigroup m, MultiplicativeMonoid m) <= AbelianMultiplicativeMonoid m where
+    class (AbelianMultSemigroup m, MultMonoid m) <= AbelianMultMonoid m where
 
-    class (AdditiveSemigroup m) <= AdditiveMonoid m where
+    class (AddSemigroup m) <= AddMonoid m where
       zero :: m
 
     class (Semigroup m) <= Monoid m where
       mempty :: m
 
-    class (AdditiveMonoid m) <= MultiplicativeMonoid m where
+    class (MultSemigroup m) <= MultMonoid m where
       one :: m
 
 
 ### Type Class Instances
 
-    instance abelianAdditiveMonoid :: AbelianAdditiveMonoid Prim.Number
+    instance abelianAddMonoid :: AbelianAddMonoid Number
 
-    instance abelianMultiplicativeMonoid :: AbelianMultiplicativeMonoid Prim.Number
+    instance abelianMultMonoid :: AbelianMultMonoid Number
 
-    instance additiveNumber :: AdditiveMonoid Prim.Number
+    instance additiveNumber :: AddMonoid Number
 
-    instance monoidString :: Monoid Prim.String
+    instance monoidString :: Monoid String
 
-    instance multiplicativeNumber :: MultiplicativeMonoid Prim.Number
+    instance multiplicativeNumber :: MultMonoid Number
 
 
 ## Module Data.Ring
 
 ### Type Classes
 
-    class (AbelianAdditiveMonoid r, MultiplicativeMonoid r) <= Rig r where
+    class (AbelianAddMonoid r, MultMonoid r) <= Rig r where
 
-    class (AbelianAdditiveGroup r, MultiplicativeMonoid r) <= Ring r where
+    class (AbelianAddGroup r, MultMonoid r) <= Ring r where
 
-    class (AbelianAdditiveGroup r, MultiplicativeSemigroup r) <= Rng r where
+    class (AbelianAddGroup r, MultSemigroup r) <= Rng r where
 
 
 ### Type Class Instances
 
-    instance ringNumber :: Ring Prim.Number
+    instance ringNumber :: Ring Number
 
 
 ## Module Data.Semigroup
 
 ### Type Classes
 
-    class (AdditiveSemigroup s) <= AbelianAdditiveSemigroup s where
+    class (AddSemigroup s) <= AbelianAddSemigroup s where
 
-    class (MultiplicativeSemigroup s) <= AbelianMultiplicativeSemigroup s where
+    class (MultSemigroup s) <= AbelianMultSemigroup s where
 
     class (Semigroup s) <= AbelianSemigroup s where
 
-    class AdditiveSemigroup s where
+    class AddSemigroup s where
       (+) :: s -> s -> s
 
-    class (AdditiveSemigroup s) <= MultiplicativeSemigroup s where
+    class MultSemigroup s where
       (*) :: s -> s -> s
 
     class Semigroup s where
@@ -184,24 +168,24 @@
 
 ### Type Class Instances
 
-    instance abelianAdditiveSemigroup :: AbelianAdditiveSemigroup Prim.Number
+    instance abelianAddSemigroup :: AbelianAddSemigroup Number
 
-    instance abelianMultiplicativeSemigroup :: AbelianMultiplicativeSemigroup Prim.Number
+    instance abelianMultSemigroup :: AbelianMultSemigroup Number
 
-    instance additiveNumber :: AdditiveSemigroup Prim.Number
+    instance additiveNumber :: AddSemigroup Number
 
-    instance multiplicativeNumber :: MultiplicativeSemigroup Prim.Number
+    instance multiplicativeNumber :: MultSemigroup Number
 
-    instance semigroupString :: Semigroup Prim.String
+    instance semigroupString :: Semigroup String
 
 
 ### Values
 
-    numPlus :: Prim.Number -> Prim.Number -> Prim.Number
+    numPlus :: Number -> Number -> Number
 
-    numTimes :: Prim.Number -> Prim.Number -> Prim.Number
+    numTimes :: Number -> Number -> Number
 
-    strConcat :: Prim.String -> Prim.String -> Prim.String
+    strConcat :: String -> String -> String
 
 
 ## Module Data.Semilattice
@@ -217,16 +201,32 @@
 
 ### Type Class Instances
 
-    instance joinSemilatticeBoolean :: JoinSemilattice Prim.Boolean
+    instance joinSemilatticeBoolean :: JoinSemilattice Boolean
 
-    instance meetSemilatticeBoolean :: MeetSemilattice Prim.Boolean
+    instance meetSemilatticeBoolean :: MeetSemilattice Boolean
 
 
 ### Values
 
-    booleanAnd :: Prim.Boolean -> Prim.Boolean -> Prim.Boolean
+    booleanAnd :: Boolean -> Boolean -> Boolean
 
-    booleanOr :: Prim.Boolean -> Prim.Boolean -> Prim.Boolean
+    booleanOr :: Boolean -> Boolean -> Boolean
+
+
+## Module Data.Module.LeftModule
+
+### Type Classes
+
+    class (AbelianAddGroup m, Ring r) <= LeftModule m r where
+      (*<) :: r -> m -> m
+
+
+## Module Data.Module.RightModule
+
+### Type Classes
+
+    class (AbelianAddGroup m, Ring r) <= RightModule m r where
+      (>*) :: m -> r -> m
 
 
 

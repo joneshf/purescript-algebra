@@ -1,6 +1,8 @@
-var gulp = require('gulp');
-var gulpc = require('gulp-clean');
-var purescript = require('gulp-purescript');
+var gulp       = require('gulp')
+  , clean      = require('gulp-clean')
+  , purescript = require('gulp-purescript')
+  , run        = require('gulp-run')
+  ;
 
 paths = {
     src: [
@@ -19,22 +21,22 @@ gulp.task('purescript', function() {
       .pipe(gulp.dest('js/'));
 });
 
-// TODO: there's no docgen in gulp-purescript!!
 gulp.task('docs', function() {
     return gulp.src(paths.src)
-      .pipe(purescript.docgen())
+      .pipe(purescript.pscDocs())
       .pipe(gulp.dest('README.md'));
 });
 
 gulp.task('test-clean', function() {
     return gulp.src('test/output')
-      .pipe(gulpc());
+      .pipe(clean());
 });
 
 gulp.task('test-compile', ['test-clean'], function() {
     return gulp.src(paths.test)
-      .pipe(purescript.pscMake({output: 'test/output'}));
+      .pipe(purescript.psc({main: 'Test.Data.Algebra', output: 'test/test.js'}))
+      .pipe(run('node'));
 });
 
-gulp.task('default',['purescript']);
-gulp.task('test',['test-clean', 'test-compile']);
+gulp.task('default', ['purescript', 'docs']);
+gulp.task('test', ['test-clean', 'test-compile']);
