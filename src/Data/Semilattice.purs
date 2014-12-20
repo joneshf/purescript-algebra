@@ -1,5 +1,8 @@
 module Data.Semilattice where
 
+  infixr 2 \/
+  infixr 3 /\
+
   class JoinSemilattice j where
     (\/) :: j -> j -> j
 

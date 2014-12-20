@@ -1,8 +1,11 @@
 module Data.Group where
 
+  import Data.Monoid
+
   import qualified Prelude as P
 
-  import Data.Monoid
+  infixl 7 /
+  infixl 6 -
 
   -- | `inverse` should provide an element such that
   --   a ++ (inverse a) == mempty == (inverse a) ++ a
@@ -12,7 +15,7 @@ module Data.Group where
   -- | `negate` should provide an element such that
   --   a + (negate a) == zero == (negate a) + a
   --   This can also be rewritten
-  --   a - a == zero == a - a
+  --   a - a == zero
   class (AddMonoid g) <= AddGroup g where
     negate :: g -> g
     (-) :: g -> g -> g
@@ -20,7 +23,7 @@ module Data.Group where
   -- | `recip` should provide an element such that
   --   a * (recip a) == one == (recip a) * a
   --   This can also be rewritten
-  --   a / a == one == a / a
+  --   a / a == one
   class (MultMonoid g) <= MultGroup g where
     recip :: g -> g
     (/) :: g -> g -> g

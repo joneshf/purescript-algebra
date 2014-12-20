@@ -18,7 +18,7 @@ module Data.Semigroup where
 
   -- | `*` should satisfy associativity.
   --   a * (b * c) == (a * b) * c
-  class (AddSemigroup s) <= MultSemigroup s where
+  class MultSemigroup s where
     (*) :: s -> s -> s
 
   -- | `<>` should satisfy commutativity.

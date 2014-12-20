@@ -1,8 +1,8 @@
 module Data.Monoid where
 
-  import qualified Prelude as P
-
   import Data.Semigroup
+
+  import qualified Prelude as P
 
   -- | `mempty` should be a left and right identity for the underlying `Semigroup`.
   --   a + mempty == a == mempty + a
@@ -16,7 +16,7 @@ module Data.Monoid where
 
   -- | `one` should be a left and right identity for the underlying `Semigroup`.
   --   a + one == a == one + a
-  class (AddMonoid m) <= MultMonoid m where
+  class (MultSemigroup m) <= MultMonoid m where
     one :: m
 
   -- | The Monoid preserves commutativity for the underlying `Semigroup`.
